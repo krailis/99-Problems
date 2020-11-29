@@ -4,7 +4,7 @@
 import math
 import sys
 sys.path.insert(0, '../')
-from Lists.p01_to_p10_solutions.solutions_1_10 import s9_packConsecutiveDuplicates
+from lists.p01_to_p10_solutions.solutions_1_10 import s9_packConsecutiveDuplicates
 from timeit import Timer
 
 # Problem 1: Determine whether a given number is prime

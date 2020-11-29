@@ -118,34 +118,50 @@ def s47_tableArbitrary (operands, expr):
 			exec(op + "=" + str(y.pop(0)))
 		print(outputFormat % (x + (str(eval(exprPrefix.upper())),)))
 
-# Problem 48: Gray Code
-def s48_grayCode (n):
-	if (n == 1):
-		return ['0', '1']
-	grayCode = ['0', '1']
+
+def gray_code(n: int):
+	"""Problem 48: Gray Code.
+
+	Parameters
+	----------
+	n : int
+		The number of
+
+	Returns
+	-------
+
+	"""
+	gray_code_list = ['0', '1']
+	if n == 1:
+		return gray_code_list
+
 	for i in range(0, n - 1):
 		# Prefix list elements with '0'
-		grayCodeLeft = ['0' + x for x in grayCode]
-		grayCode.reverse()
+		gray_code_left = ['0' + x for x in gray_code_list]
+		gray_code_list.reverse()
 		# After reversing prefix list elements with '1'
-		grayCodeRight = ['1' + x for x in grayCode]
+		gray_code_right = ['1' + x for x in gray_code_list]
 		# Join lists
-		grayCodeLeft.extend(grayCodeRight)
-		grayCode = grayCodeLeft
-	return grayCode
+		gray_code_left.extend(gray_code_right)
+		gray_code_list = gray_code_left
+	return gray_code_list
 
 # Problem 49: Huffman Code
 def s49_huffman (Fs):
+
 	# A definition of a tree node
-	class treeNode(object):
-		def __init__(self, left = None, right = None, root = None):
+	class TreeNode(object):
+		"""Tree Node Class."""
+		def __init__(self, left=None, right=None, root=None):
 			self.left = left
 			self.right = right
 			self.root = root
+
 		def children(self):
-			return ((self.left, self.right))
+			"""Return children of node"""
+			return self.left, self.right
 	
-	# A function for creating a tree according to Huffman coding alorithm
+	# A function for creating a tree according to Huffman coding algorithm
 	def create_tree (freqs):
 		priorityQueue = queue.PriorityQueue()
 		for x in freqs:
@@ -153,7 +169,7 @@ def s49_huffman (Fs):
 		while priorityQueue.qsize() > 1:
 			left = priorityQueue.get()
 			right = priorityQueue.get()
-			node = treeNode(left, right)
+			node = TreeNode(left, right)
 			priorityQueue.put((left[0] + right[0], node))
 		return priorityQueue.get()
 	

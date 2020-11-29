@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import unittest
-from solutions_45_49 import s48_grayCode
-from solutions_45_49 import s49_huffman
 
 class problemsFortyEightToFortyNine (unittest.TestCase):
 

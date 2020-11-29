@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
-
 import unittest
-from solutions_31_41 import *
+from arithmetic import *
 
-class problemsThirtyOneToFortyOne (unittest.TestCase):
+class ArithmeticProblemsTest(unittest.TestCase):
 
 	def test_s31_isPrime (self):
 		self.assertTrue(s31_isPrime(7))
