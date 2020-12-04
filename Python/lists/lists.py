@@ -269,7 +269,7 @@ def pack(list_a: list):
 
     if len(list_a) <= 1:
         # In case of empty or one-element list return.
-        return list_a
+        return [list_a]
 
     packed, sublist = [], [list_a[0]]
     for element in list_a[1:]:

@@ -93,6 +93,7 @@ class ListProblemsTest(unittest.TestCase):
             pack(['a', 'a', 'a', 'b', 'b', 'c', 'd', 'd']),
             [['a', 'a', 'a'], ['b', 'b'], ['c'], ['d', 'd']]
         )
+        self.assertEqual(pack(['a']), [['a']])
         self.assertRaises(TypeError, pack, {})
 
     def test_encode(self):
