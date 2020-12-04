@@ -38,17 +38,17 @@ Arithmetic Problems, Logic and Codes, Binary Trees, Multiway Trees, Graphs etc.
 
 ## Arithmetic
 
-[[31](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L11)] Determine whether a given integer number is prime. <br />
-[[32](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L16)] Determine the prime factors of a given positive integer. <br />
-[[33](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L32)] Determine the prime factors of a given positive integer(2). <br />
-[[34](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L41)] A list of prime numbers. <br />
-[[35](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L54)] Goldbach's conjecture. <br />
-[[36](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L62)] A list of Goldbach compositions. <br />
-[[37](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L71)] Determine the greatest common divisor of two positive integer numbers. <br />
-[[38](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L79)] Determine whether two positive integer numbers are coprime. <br />
-[[39](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L83)] Calculate Euler's totient function phi(m). <br />
-[[40](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L99)] Calculate Euler's totient function phi(m)(2). <br />
-[[41](https://github.com/krailis/99-Problems/blob/master/Python/Arithmetic/solutions_31_41.py#L109)] Compare the two methods of calculating Euler's totient function. <br />
+[[31](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L17)] Determine whether a given integer number is prime. <br />
+[[32](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L35)] Determine the greatest common divisor of two positive integer numbers. <br />
+[[33](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L64)] Determine whether two positive integer numbers are coprime. <br />
+[[34](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L124)] Calculate Euler's totient function phi(m). <br />
+[[35](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L88)] Determine the prime factors of a given positive number. <br />
+[[36](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L168)] Construct a list containing the prime factors and their multiplicity. <br />
+[[37](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L187)] Calculate Euler's totient function phi(m) (improved). <br />
+[[38](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L221)] Compare the two methods of calculating Euler's totient function. <br />
+[[39](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L243)] A list of prime numbers. <br />
+[[40](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L270)] Goldbach's Conjecture. <br />
+[[41](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L300)] A lis og Goldbach's Compositions. <br />
 [42] There is no problem 42 in original problem set. <br />
 [43] There is no problem 43 in original problem set. <br />
 [44] There is no problem 44 in original problem set. <br />
