@@ -1,14 +1,17 @@
 """arithmetic/arithmetic.py
 
-This file includes solutions to Arithmetic Problems (31 - 40).
+This file includes solutions to Arithmetic Problems (31 - 41).
 
 author(s):	Konstantinos Railis <kons.railis@gmail.com>
 
 """
 import math
+import random
+import sys
 from timeit import Timer
 
-from lists import pack
+sys.path.append('.')
+sys.path.append('../lists/')
 
 
 def is_prime(number: int):
@@ -101,16 +104,18 @@ def prime_factors(number: int):
         If the given number is not positive
 
     """
+    if is_prime(number):
+        return [number]
     prime_factor_list = []
-    if number % 2 == 0:
+    while number % 2 == 0:
         # If 2 is repeated more than once we have 4 which is not a prime number
         prime_factor_list.append(2)
-        number = number / 2
+        number = int(number / 2)
     for i in range(3, int(math.sqrt(number)) + 1, 2):
         # Divide by i until not possible and then increase
         while number % i == 0:
             prime_factor_list.append(i)
-            number = number / i
+            number = int(number / i)
     if number > 2:
         prime_factor_list.append(number)
     return prime_factor_list
@@ -174,12 +179,9 @@ def prime_factors_mult(number: int):
         A length-encoded list of factors
 
     """
+    from lists import encode
     prime_factor_list = prime_factors(number)
-    prime_factor_packed = pack(prime_factor_list)
-    prime_factor_mult = []
-    for x in prime_factor_packed:
-        prime_factor_mult.append([x[0], len(x)])
-    return prime_factor_mult
+    return encode(prime_factor_list)
 
 
 def totient_phi_2(m: int):
@@ -211,8 +213,8 @@ def totient_phi_2(m: int):
 
     phi = 1
     prime_factor_encoded = prime_factors_mult(m)
-    for element in prime_factor_encoded:
-        phi *= (element[0] - 1) * (element[0] ** (element[1] - 1))
+    for m, p in prime_factor_encoded:
+        phi *= (p - 1) * (p ** (m - 1))
     return int(phi)
 
 
@@ -225,7 +227,6 @@ def compare_totient(number_of_tests: int):
         The number of tests to run for comparison
 
     """
-    import random
     print('%-25s | %-25s | %-25s' %
           ('Argument', 'Time of totient_phi (s)', 'Time of totient_phi_2 (s)'))
     for m in random.sample(range(6, 20000, 2), number_of_tests):
@@ -285,8 +286,10 @@ def goldbach(number: int):
         If the given number is not a positive even number
 
     """
-    if number <= 2 or number % 2 != 0:
-        raise ValueError('The given number is even and greater than 2.')
+    if number <= 2:
+        raise ValueError('The given number is smaller than 2.')
+    if number % 2 != 0:
+        raise ValueError('The given number is odd.')
 
     prime_list = primes_list(3, int(number / 2))
     for prime in prime_list:
