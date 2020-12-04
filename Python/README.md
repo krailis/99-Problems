@@ -48,7 +48,7 @@ Arithmetic Problems, Logic and Codes, Binary Trees, Multiway Trees, Graphs etc.
 [[38](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L221)] Compare the two methods of calculating Euler's totient function. <br />
 [[39](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L243)] A list of prime numbers. <br />
 [[40](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L270)] Goldbach's Conjecture. <br />
-[[41](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L300)] A lis og Goldbach's Compositions. <br />
+[[41](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L300)] A list of Goldbach's Compositions. <br />
 [42] There is no problem 42 in original problem set. <br />
 [43] There is no problem 43 in original problem set. <br />
 [44] There is no problem 44 in original problem set. <br />
