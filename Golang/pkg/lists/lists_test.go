@@ -276,3 +276,362 @@ func TestCompress(t *testing.T) {
     })
   }
 }
+
+func TestPack(t *testing.T) {
+  var testCases = []struct {
+    x Slice
+    y []Slice
+  }{
+    {
+      Slice{"a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e"},
+      []Slice{
+        Slice{"a", "a", "a", "a"}, Slice{"b"}, Slice{"c", "c"},
+        Slice{"a", "a"}, Slice{"d"}, Slice{"e", "e", "e"}},
+    },
+    {
+      Slice{"a", "b", "b", "c", "b", "b", "d", "e", "e", "f", "f", "f", "f"},
+      []Slice{
+        Slice{"a"}, Slice{"b", "b"}, Slice{"c"}, Slice{"b", "b"},
+        Slice{"d"}, Slice{"e", "e"}, Slice{"f", "f", "f", "f"}},
+    },
+    {
+      Slice{"a", "b", "a", "a", "b", "c", "c", "d", "c", "d", "d", "d", "e"},
+      []Slice{
+        Slice{"a"}, Slice{"b"}, Slice{"a", "a"}, Slice{"b"}, Slice{"c", "c"},
+        Slice{"d"}, Slice{"c"}, Slice{"d", "d", "d"}, Slice{"e"}},
+    },
+    {
+      Slice{"a", "a", "b", "c", "d", "e", "f", "a", "a", "a", "b", "c", "c"},
+      []Slice{
+        Slice{"a", "a"}, Slice{"b"}, Slice{"c"}, Slice{"d"}, Slice{"e"},
+        Slice{"f"}, Slice{"a", "a", "a"}, Slice{"b"}, Slice{"c", "c"}},
+    },
+    {
+      Slice{"a", "b", "b"},
+      []Slice{Slice{"a"}, Slice{"b", "b"}},
+    },
+    {
+      Slice{"a", "a"},
+      []Slice{Slice{"a", "a"}},
+    },
+    {
+      Slice{},
+      []Slice{},
+    },
+  }
+
+  for _, testCase := range testCases {
+    testName := fmt.Sprint(testCase.x)
+    t.Run(testName, func(t *testing.T) {
+      ans := Pack(testCase.x)
+      if !(reflect.DeepEqual(ans, testCase.y)) {
+        t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+      }
+    })
+  }
+}
+
+func TestEncode(t *testing.T) {
+  var testCases = []struct {
+    x Slice
+    y ISlice
+  }{
+    {
+      Slice{"a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e"},
+      ISlice{
+        LengthEncodedPair{4, "a"}, LengthEncodedPair{1, "b"}, LengthEncodedPair{2, "c"},
+        LengthEncodedPair{2, "a"}, LengthEncodedPair{1, "d"}, LengthEncodedPair{3, "e"}},
+    },
+    {
+      Slice{"a", "b", "b", "c", "b", "b", "d", "e", "e", "f", "f", "f", "f"},
+      ISlice{
+        LengthEncodedPair{1, "a"}, LengthEncodedPair{2, "b"}, LengthEncodedPair{1, "c"},
+        LengthEncodedPair{2, "b"}, LengthEncodedPair{1, "d"}, LengthEncodedPair{2, "e"},
+        LengthEncodedPair{4, "f"}},
+    },
+    {
+      Slice{"a", "b", "a", "a", "b", "c", "c", "d", "c", "d", "d", "d", "e"},
+      ISlice{
+        LengthEncodedPair{1, "a"}, LengthEncodedPair{1, "b"}, LengthEncodedPair{2, "a"},
+        LengthEncodedPair{1, "b"}, LengthEncodedPair{2, "c"}, LengthEncodedPair{1, "d"},
+        LengthEncodedPair{1, "c"}, LengthEncodedPair{3, "d"}, LengthEncodedPair{1, "e"}},
+    },
+    {
+      Slice{"a", "a", "b", "c", "d", "e", "f", "a", "a", "a", "b", "c", "c"},
+      ISlice{
+        LengthEncodedPair{2, "a"}, LengthEncodedPair{1, "b"}, LengthEncodedPair{1, "c"},
+        LengthEncodedPair{1, "d"}, LengthEncodedPair{1, "e"}, LengthEncodedPair{1, "f"},
+        LengthEncodedPair{3, "a"}, LengthEncodedPair{1, "b"}, LengthEncodedPair{2, "c"}},
+    },
+    {
+      Slice{"a", "b", "b"},
+      ISlice{LengthEncodedPair{1, "a"}, LengthEncodedPair{2, "b"}},
+    },
+    {
+      Slice{"a", "a"},
+      ISlice{LengthEncodedPair{2, "a"}},
+    },
+    {
+      Slice{},
+      ISlice{},
+    },
+  }
+
+  for _, testCase := range testCases {
+    testName := fmt.Sprint(testCase.x)
+    t.Run(testName, func(t *testing.T) {
+      ans := Encode(testCase.x)
+      if !(reflect.DeepEqual(ans, testCase.y)) {
+        t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+      }
+    })
+  }
+}
+
+func TestEncodeModified(t *testing.T) {
+  var testCases = []struct {
+    x Slice
+    y ISlice
+  }{
+    {
+      Slice{"a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e"},
+      ISlice{
+        LengthEncodedPair{4, "a"}, "b", LengthEncodedPair{2, "c"},
+        LengthEncodedPair{2, "a"}, "d", LengthEncodedPair{3, "e"}},
+    },
+    {
+      Slice{"a", "b", "b", "c", "b", "b", "d", "e", "e", "f", "f", "f", "f"},
+      ISlice{
+        "a", LengthEncodedPair{2, "b"}, "c", LengthEncodedPair{2, "b"}, "d",
+        LengthEncodedPair{2, "e"}, LengthEncodedPair{4, "f"}},
+    },
+    {
+      Slice{"a", "b", "a", "a", "b", "c", "c", "d", "c", "d", "d", "d", "e"},
+      ISlice{
+        "a", "b", LengthEncodedPair{2, "a"}, "b", LengthEncodedPair{2, "c"},
+        "d", "c", LengthEncodedPair{3, "d"}, "e"},
+    },
+    {
+      Slice{"a", "a", "b", "c", "d", "e", "f", "a", "a", "a", "b", "c", "c"},
+      ISlice{
+        LengthEncodedPair{2, "a"}, "b", "c", "d", "e", "f",
+        LengthEncodedPair{3, "a"}, "b", LengthEncodedPair{2, "c"}},
+    },
+    {
+      Slice{"a", "b", "b"},
+      ISlice{"a", LengthEncodedPair{2, "b"}},
+    },
+    {
+      Slice{"a", "a"},
+      ISlice{LengthEncodedPair{2, "a"}},
+    },
+    {
+      Slice{},
+      ISlice{},
+    },
+  }
+
+  for _, testCase := range testCases {
+    testName := fmt.Sprint(testCase.x)
+    t.Run(testName, func(t *testing.T) {
+      ans := EncodeModified(testCase.x)
+      if !(reflect.DeepEqual(ans, testCase.y)) {
+        t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+      }
+    })
+  }
+}
+
+func TestDecode(t *testing.T) {
+  var testCases = []struct {
+    x ISlice
+    y Slice
+  }{
+    {
+      ISlice{
+        LengthEncodedPair{4, "a"}, "b", LengthEncodedPair{2, "c"},
+        LengthEncodedPair{2, "a"}, "d", LengthEncodedPair{3, "e"}},
+      Slice{"a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e"},
+    },
+    {
+      ISlice{
+        "a", LengthEncodedPair{2, "b"}, "c", LengthEncodedPair{2, "b"}, "d",
+        LengthEncodedPair{2, "e"}, LengthEncodedPair{4, "f"}},
+      Slice{"a", "b", "b", "c", "b", "b", "d", "e", "e", "f", "f", "f", "f"},
+    },
+    {
+      ISlice{
+        "a", "b", LengthEncodedPair{2, "a"}, "b", LengthEncodedPair{2, "c"},
+        "d", "c", LengthEncodedPair{3, "d"}, "e"},
+      Slice{"a", "b", "a", "a", "b", "c", "c", "d", "c", "d", "d", "d", "e"},
+    },
+    {
+      ISlice{
+        LengthEncodedPair{2, "a"}, "b", "c", "d", "e", "f",
+        LengthEncodedPair{3, "a"}, "b", LengthEncodedPair{2, "c"}},
+      Slice{"a", "a", "b", "c", "d", "e", "f", "a", "a", "a", "b", "c", "c"},
+    },
+    {
+      ISlice{"a", LengthEncodedPair{2, "b"}},
+      Slice{"a", "b", "b"},
+    },
+    {
+      ISlice{LengthEncodedPair{2, "a"}},
+      Slice{"a", "a"},
+    },
+    {
+      ISlice{},
+      Slice{},
+    },
+  }
+
+  for _, testCase := range testCases {
+    testName := fmt.Sprint(testCase.x)
+    t.Run(testName, func(t *testing.T) {
+      ans := Decode(testCase.x)
+      if !(reflect.DeepEqual(ans, testCase.y)) {
+        t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+      }
+    })
+  }
+}
+
+func TestEncodeDirect(t *testing.T) {
+  var testCases = []struct {
+    x Slice
+    y ISlice
+  }{
+    {
+      Slice{"a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e"},
+      ISlice{
+        LengthEncodedPair{4, "a"}, "b", LengthEncodedPair{2, "c"},
+        LengthEncodedPair{2, "a"}, "d", LengthEncodedPair{3, "e"}},
+    },
+    {
+      Slice{"a", "b", "b", "c", "b", "b", "d", "e", "e", "f", "f", "f", "f"},
+      ISlice{
+        "a", LengthEncodedPair{2, "b"}, "c", LengthEncodedPair{2, "b"}, "d",
+        LengthEncodedPair{2, "e"}, LengthEncodedPair{4, "f"}},
+    },
+    {
+      Slice{"a", "b", "a", "a", "b", "c", "c", "d", "c", "d", "d", "d", "e"},
+      ISlice{
+        "a", "b", LengthEncodedPair{2, "a"}, "b", LengthEncodedPair{2, "c"},
+        "d", "c", LengthEncodedPair{3, "d"}, "e"},
+    },
+    {
+      Slice{"a", "a", "b", "c", "d", "e", "f", "a", "a", "a", "b", "c", "c"},
+      ISlice{
+        LengthEncodedPair{2, "a"}, "b", "c", "d", "e", "f",
+        LengthEncodedPair{3, "a"}, "b", LengthEncodedPair{2, "c"}},
+    },
+    {
+      Slice{"a", "b", "b"},
+      ISlice{"a", LengthEncodedPair{2, "b"}},
+    },
+    {
+      Slice{"a", "a"},
+      ISlice{LengthEncodedPair{2, "a"}},
+    },
+    {
+      Slice{},
+      ISlice{},
+    },
+  }
+
+  for _, testCase := range testCases {
+    testName := fmt.Sprint(testCase.x)
+    t.Run(testName, func(t *testing.T) {
+      ans := EncodeDirect(testCase.x)
+      if !(reflect.DeepEqual(ans, testCase.y)) {
+        t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+      }
+    })
+  }
+}
+
+func TestDuplicate(t *testing.T) {
+  var testCases = []struct {
+    x Slice
+    y Slice
+  }{
+    {
+      Slice{"a", "b", "c", "a", "d", "e"},
+      Slice{"a", "a", "b", "b",  "c", "c", "a", "a", "d", "d", "e", "e"},
+    },
+    {
+      Slice{"a", "b", "c", "b", "d", "e", "f"},
+      Slice{"a", "a", "b", "b", "c", "c", "b", "b", "d", "d", "e", "e", "f", "f"},
+    },
+    {
+      Slice{"a", "b", "a", "b", "c", "d", "c"},
+      Slice{"a", "a", "b", "b", "a", "a", "b", "b", "c", "c", "d", "d", "c", "c"},
+    },
+    {
+      Slice{"a", "b", "b"},
+      Slice{"a", "a", "b", "b", "b", "b"},
+    },
+    {
+      Slice{"a"},
+      Slice{"a", "a"},
+    },
+    {
+      Slice{},
+      Slice{},
+    },
+  }
+
+  for _, testCase := range testCases {
+    testName := fmt.Sprint(testCase.x)
+    t.Run(testName, func(t *testing.T) {
+      ans := Duplicate(testCase.x)
+      if !(reflect.DeepEqual(ans, testCase.y)) {
+        t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+      }
+    })
+  }
+}
+
+func TestDuplicateTimes(t *testing.T) {
+  var testCases = []struct {
+    x Slice
+    times int
+    y Slice
+  }{
+    {
+      Slice{"a", "b", "c", "a", "d", "e"}, 1,
+      Slice{"a", "b", "c", "a", "d", "e"},
+    },
+    {
+      Slice{"a", "b", "c", "b", "d", "e", "f"}, 2,
+      Slice{"a", "a", "b", "b", "c", "c", "b", "b", "d", "d", "e", "e", "f", "f"},
+    },
+    {
+      Slice{"a", "b", "a", "b", "c", "d", "c"}, 3,
+      Slice{
+        "a", "a", "a", "b", "b", "b", "a", "a", "a", "b", "b", "b",
+        "c", "c", "c", "d", "d", "d", "c", "c", "c"},
+    },
+    {
+      Slice{"a", "b", "b"}, 4,
+      Slice{"a", "a", "a", "a", "b", "b", "b", "b", "b", "b", "b", "b"}},
+    {
+      Slice{"a"}, 2,
+      Slice{"a", "a"},
+    },
+    {
+      Slice{}, 3,
+      Slice{},
+    },
+  }
+
+  for _, testCase := range testCases {
+    testName := fmt.Sprint(testCase.x, testCase.times)
+    t.Run(testName, func(t *testing.T) {
+      ans := DuplicateTimes(testCase.x, testCase.times)
+      if !(reflect.DeepEqual(ans, testCase.y)) {
+        t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+      }
+    })
+  }
+}
