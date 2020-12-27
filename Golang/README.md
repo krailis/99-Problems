@@ -1,7 +1,6 @@
 # 99-Golang-Problems
 
-An attempt to solve the [99 PROLOG Problems](https://sites.google.com/site/prologsite/prolog-problems) in Golang. Their categories include Lists,
-Arithmetic Problems, Logic and Codes, Binary Trees, Multiway Trees, Graphs etc.
+An attempt to solve the [99 PROLOG Problems](https://sites.google.com/site/prologsite/prolog-problems) in Golang. Their categories include Lists, Arithmetic Problems, Logic and Codes, Binary Trees, Multiway Trees, Graphs etc.
 
 ## Lists
 
