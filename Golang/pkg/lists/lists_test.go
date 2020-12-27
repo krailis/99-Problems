@@ -725,28 +725,28 @@ func TestSplit(t *testing.T) {
 func TestSliceList(t *testing.T) {
 	var testCases = []struct {
 		x     Slice
-                start int
-                end   int
+		start int
+		end   int
 		y     Slice
 	}{
 		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 3, 5,
-                        Slice{"c", "d", "e"},
+			Slice{"c", "d", "e"},
 		},
 		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 1, 7,
-                        Slice{"a", "b", "c", "d", "e", "f", "g"},
+			Slice{"a", "b", "c", "d", "e", "f", "g"},
 		},
 		{
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 9, 12,
-                        Slice{"i", "j", "k", "l"},
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 9, 12,
+			Slice{"i", "j", "k", "l"},
 		},
 		{
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 1, 12,
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 1, 12,
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
 		},
 		{
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 3, 9,
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 3, 9,
 			Slice{"c", "d", "e", "f", "g", "h", "i"},
 		},
 	}
@@ -765,24 +765,24 @@ func TestSliceList(t *testing.T) {
 func TestRotate(t *testing.T) {
 	var testCases = []struct {
 		x      Slice
-                places int
+		places int
 		y      Slice
 	}{
 		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 3,
-                        Slice{"d", "e", "f", "g", "h", "i", "j", "k", "l", "a", "b", "c"},
+			Slice{"d", "e", "f", "g", "h", "i", "j", "k", "l", "a", "b", "c"},
 		},
-                {
+		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 15,
-                        Slice{"d", "e", "f", "g", "h", "i", "j", "k", "l", "a", "b", "c"},
+			Slice{"d", "e", "f", "g", "h", "i", "j", "k", "l", "a", "b", "c"},
 		},
 		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, -7,
-                        Slice{"f", "g", "h", "i", "j", "k", "l", "a", "b", "c", "d", "e"},
+			Slice{"f", "g", "h", "i", "j", "k", "l", "a", "b", "c", "d", "e"},
 		},
 		{
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, -19,
-                        Slice{"f", "g", "h", "i", "j", "k", "l", "a", "b", "c", "d", "e"},
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, -19,
+			Slice{"f", "g", "h", "i", "j", "k", "l", "a", "b", "c", "d", "e"},
 		},
 	}
 
@@ -797,34 +797,34 @@ func TestRotate(t *testing.T) {
 	}
 }
 
-func TestRemoveKthElement(t *testing.T) {
+func TestRemoveAt(t *testing.T) {
 	var testCases = []struct {
 		x     Slice
-                index int
+		index int
 		y     Slice
 	}{
 		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 3,
-                        Slice{"a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
+			Slice{"a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
 		},
-                {
+		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 10,
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "k", "l"},
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "k", "l"},
 		},
 		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 1,
-                        Slice{"b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
+			Slice{"b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
 		},
 		{
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 12,
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"},
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 12,
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"},
 		},
 	}
 
 	for _, testCase := range testCases {
 		testName := fmt.Sprint(testCase.x, testCase.index)
 		t.Run(testName, func(t *testing.T) {
-			ans, _ := RemoveKthElement(testCase.x, testCase.index)
+			ans, _ := RemoveAt(testCase.x, testCase.index)
 			if !(reflect.DeepEqual(ans, testCase.y)) {
 				t.Errorf("Expected %v but the result was %v", testCase.y, ans)
 			}
@@ -835,7 +835,7 @@ func TestRemoveKthElement(t *testing.T) {
 func TestInsertAt(t *testing.T) {
 	var testCases = []struct {
 		x        Slice
-                position int
+		position int
 		element  string
 		y        Slice
 	}{
@@ -843,7 +843,7 @@ func TestInsertAt(t *testing.T) {
 			Slice{"a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l"}, 3, "c",
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
 		},
-                {
+		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "k", "l"}, 10, "j",
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
 		},
@@ -853,7 +853,7 @@ func TestInsertAt(t *testing.T) {
 		},
 		{
 			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"}, 12, "l",
-                        Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"},
 		},
 	}
 
@@ -878,7 +878,7 @@ func TestRange(t *testing.T) {
 			5, 18,
 			[]int{5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
 		},
-                {
+		{
 			2, 8,
 			[]int{2, 3, 4, 5, 6, 7, 8},
 		},
@@ -939,6 +939,149 @@ func TestLotto(t *testing.T) {
 		t.Run(testName, func(t *testing.T) {
 			ans, _ := Lotto(testCase.n, testCase.m)
 			fmt.Printf("\tRandomly Generated Numbers: %v\n", ans)
+		})
+	}
+}
+
+func TestRandomPermutation(t *testing.T) {
+	var testCases = []struct {
+		x []int
+	}{
+		{
+			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
+		},
+		{
+			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
+		},
+	}
+
+	for _, testCase := range testCases {
+		testName := fmt.Sprint(testCase.x)
+		t.Run(testName, func(t *testing.T) {
+			ans, _ := RandomPermutation(testCase.x)
+			fmt.Printf("\tRandom Permutation: %v\n", ans)
+		})
+	}
+}
+
+func TestCombination(t *testing.T) {
+	var testCases = []struct {
+		x Slice
+		k int
+		n int
+	}{
+		{
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"}, 5, 252,
+		},
+		{
+			Slice{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"}, 3, 120,
+		},
+	}
+
+	for _, testCase := range testCases {
+		testName := fmt.Sprint(testCase.x, testCase.k)
+		t.Run(testName, func(t *testing.T) {
+			counter := 0
+			for combination := range Combination(testCase.x, testCase.k) {
+				fmt.Printf("%v ", combination)
+				counter++
+			}
+			fmt.Println()
+			if counter != testCase.n {
+				t.Errorf("Expected %v combinations but %v were generated", testCase.n, counter)
+			}
+		})
+	}
+}
+
+func TestLengthSort(t *testing.T) {
+	var testCases = []struct {
+		x []Slice
+		y []Slice
+	}{
+		{
+			[]Slice{
+				Slice{"a", "a", "a", "a"}, Slice{"b"}, Slice{"c", "c"},
+				Slice{"a", "a"}, Slice{"d"}, Slice{"e", "e", "e"}},
+			[]Slice{
+				Slice{"b"}, Slice{"d"}, Slice{"c", "c"}, Slice{"a", "a"},
+				Slice{"e", "e", "e"}, Slice{"a", "a", "a", "a"}},
+		},
+		{
+			[]Slice{
+				Slice{"a"}, Slice{"b", "b"}, Slice{"c"}, Slice{"b", "b"},
+				Slice{"d"}, Slice{"e", "e"}, Slice{"f", "f", "f", "f"}},
+			[]Slice{
+				Slice{"a"}, Slice{"c"}, Slice{"d"}, Slice{"b", "b"},
+				Slice{"b", "b"}, Slice{"e", "e"}, Slice{"f", "f", "f", "f"}},
+		},
+		{
+			[]Slice{
+				Slice{"a", "a"}, Slice{"b"}, Slice{"c"}, Slice{"d"}, Slice{"e"},
+				Slice{"f"}, Slice{"a", "a", "a"}, Slice{"b"}, Slice{"c", "c"}},
+			[]Slice{
+				Slice{"b"}, Slice{"c"}, Slice{"d"}, Slice{"e"}, Slice{"f"},
+				Slice{"b"}, Slice{"a", "a"}, Slice{"c", "c"}, Slice{"a", "a", "a"}},
+		},
+		{
+			[]Slice{Slice{"b", "b"}, Slice{"a"}},
+			[]Slice{Slice{"a"}, Slice{"b", "b"}},
+		},
+	}
+
+	for _, testCase := range testCases {
+		testName := fmt.Sprint(testCase.x)
+		t.Run(testName, func(t *testing.T) {
+			ans := LengthSort(testCase.x)
+			if !(reflect.DeepEqual(ans, testCase.y)) {
+				t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+			}
+		})
+	}
+}
+
+func TestLengthFrequencySort(t *testing.T) {
+	var testCases = []struct {
+		x []Slice
+		y []Slice
+	}{
+		{
+			[]Slice{
+				Slice{"a", "a", "a", "a"}, Slice{"b"}, Slice{"c", "c"},
+				Slice{"a", "a"}, Slice{"d"}, Slice{"e", "e", "e"}},
+			[]Slice{
+				Slice{"a", "a", "a", "a"}, Slice{"e", "e", "e"}, Slice{"b"},
+				Slice{"d"}, Slice{"c", "c"}, Slice{"a", "a"}},
+		},
+		{
+			[]Slice{
+				Slice{"a"}, Slice{"b", "b"}, Slice{"c"}, Slice{"b", "b"},
+				Slice{"d"}, Slice{"e", "e"}, Slice{"f", "f", "f", "f"}},
+			[]Slice{
+				Slice{"f", "f", "f", "f"}, Slice{"a"}, Slice{"c"}, Slice{"d"},
+				Slice{"b", "b"}, Slice{"b", "b"}, Slice{"e", "e"}},
+		},
+		{
+			[]Slice{
+				Slice{"a", "a"}, Slice{"b"}, Slice{"c"}, Slice{"d"}, Slice{"e"},
+				Slice{"f"}, Slice{"a", "a", "a"}, Slice{"b"}, Slice{"c", "c"}},
+			[]Slice{
+				Slice{"a", "a", "a"}, Slice{"a", "a"}, Slice{"c", "c"}, Slice{"b"},
+				Slice{"c"}, Slice{"d"}, Slice{"e"}, Slice{"f"}, Slice{"b"}},
+		},
+		{
+			[]Slice{Slice{"b", "b"}, Slice{"a"}},
+			[]Slice{Slice{"b", "b"}, Slice{"a"}},
+		},
+	}
+
+	for _, testCase := range testCases {
+		testName := fmt.Sprint(testCase.x)
+		t.Run(testName, func(t *testing.T) {
+			ans := LengthFrequencySort(testCase.x)
+			if !(reflect.DeepEqual(ans, testCase.y)) {
+				t.Errorf("Expected %v but the result was %v", testCase.y, ans)
+			}
 		})
 	}
 }

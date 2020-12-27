@@ -4,6 +4,7 @@ package lists
 import (
 	"errors"
 	"math/rand"
+	"sort"
 	"time"
 )
 
@@ -13,6 +14,18 @@ type LengthEncodedPair struct {
 	length int
 	str    string
 }
+
+type ByLength []Slice
+
+func (a ByLength) Len() int           { return len(a) }
+func (a ByLength) Less(i, j int) bool { return len(a[i]) < len(a[j]) }
+func (a ByLength) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+
+type ByLength2 [][]Slice
+
+func (a ByLength2) Len() int           { return len(a) }
+func (a ByLength2) Less(i, j int) bool { return len(a[i]) < len(a[j]) }
+func (a ByLength2) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 
 // LastElement find The Last Element of a Slice (P01).
 func LastElement(s Slice) (string, error) {
@@ -254,20 +267,20 @@ func Rotate(s Slice, places int) Slice {
 	return rotated
 }
 
-// RemoveKthElement removes the K'th element of a list (P20).
-func RemoveKthElement(s Slice, index int) (Slice, error) {
+// RemoveAt removes the K'th element of a list (P20).
+func RemoveAt(s Slice, index int) (Slice, error) {
 	if index < 0 || len(s) < index {
 		return nil, errors.New("The `index` argument is not valid.")
 	}
 	return append(s[:index-1], s[index:]...), nil
 }
 
-// InsertAt inserts an element at a given position
+// InsertAt inserts an element at a given position (P21).
 func InsertAt(s Slice, position int, element string) (Slice, error) {
-	if position < 0 || len(s) + 1 < position {
+	if position < 0 || len(s)+1 < position {
 		return nil, errors.New("The `position` argument is not valid.")
 	}
-	if position == len(s) + 1 {
+	if position == len(s)+1 {
 		return append(s, element), nil
 	}
 	s = append(s[:position], s[position-1:]...)
@@ -292,8 +305,8 @@ func RandomSelect(s []int, samples int) ([]int, error) {
 	if samples < 0 || len(s) < samples {
 		return nil, errors.New("The requested number of samples is invalid.")
 	}
+	rand.Seed(time.Now().UnixNano())
 	randomlySelected := []int{}
-	rand.Seed(time.Now().Unix())
 	for i := 0; i < samples; i++ {
 		randomlySelected = append(randomlySelected, s[rand.Intn(len(s))])
 	}
@@ -309,6 +322,61 @@ func Lotto(n int, m int) ([]int, error) {
 		return nil, errors.New("The value of numbers to draw cannot be greater than the range.")
 	}
 	rangeList, _ := Range(1, m)
-	randomSample, _ := RandomSelect(rangeList, n)
-	return randomSample, nil
+	return RandomSelect(rangeList, n)
+}
+
+// RandomPermutation generates a random permutation of a list (P25).
+func RandomPermutation(s []int) ([]int, error) {
+	return RandomSelect(s, len(s))
+}
+
+// Combination returns the combinations of K distinct elements of a list (P26).
+func Combination(s Slice, k int) <-chan Slice {
+	channel := make(chan Slice)
+	go func() {
+		defer close(channel)
+		if k <= 0 {
+			channel <- Slice{}
+			return
+		}
+		thisone := Slice{}
+		for i := 0; i < len(s); i++ {
+			thisone = Slice{s[i]}
+			for another := range Combination(s[i+1:], k-1) {
+				channel <- append(thisone, another...)
+			}
+		}
+	}()
+	return channel
+}
+
+// LengthSort sorts a List according to the length of its sublists (P28a)
+func LengthSort(s []Slice) []Slice {
+	sort.Sort(ByLength(s))
+	return s
+}
+
+// LengthFrequencySort sorts a List accoring to sublist length frequency (P28b)
+func LengthFrequencySort(s []Slice) []Slice {
+	// Group sublists according to length in a map
+	listLenMap := make(map[int][]Slice)
+	for _, elem := range s {
+		if value, ok := listLenMap[len(elem)]; ok {
+			listLenMap[len(elem)] = append(value, elem)
+		} else {
+			listLenMap[len(elem)] = []Slice{elem}
+		}
+	}
+	// Keep only grouped sublists
+	groupedSublists := [][]Slice{}
+	for _, sublists := range listLenMap {
+		groupedSublists = append(groupedSublists, sublists)
+	}
+	sort.Sort(ByLength2(groupedSublists))
+	// Form output slice
+	sorted := []Slice{}
+	for _, sublist := range groupedSublists {
+		sorted = append(sorted, sublist...)
+	}
+	return sorted
 }
