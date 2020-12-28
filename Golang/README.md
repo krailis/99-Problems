@@ -37,17 +37,17 @@ An attempt to solve the [99 PROLOG Problems](https://sites.google.com/site/prolo
 
 ## Arithmetic
 
-[[31](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L17)] Determine whether a given integer number is prime. <br />
-[[32](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L28)] Determine the greatest common divisor of two positive integer numbers. <br />
-[[33](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L42)] Determine whether two positive integer numbers are coprime. <br />
-[[34](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L52)] Calculate Euler's totient function phi(m). <br />
-[[35](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L80)] Determine the prime factors of a given positive number. <br />
-[[36](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L102)] Construct a list containing the prime factors and their multiplicity. <br />
-[[37](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L118)] Calculate Euler's totient function phi(m) (improved). <br />
-[[38](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L136)] Compare the two methods of calculating Euler's totient function. <br />
-[[39](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L159)] A list of prime numbers. <br />
-[[40](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L181)] Goldbach's Conjecture. <br />
-[[41](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L200)] A list of Goldbach's Compositions. <br />
+[[31](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L17)] Determine whether a given integer number is prime. <br />
+[[32](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L28)] Determine the greatest common divisor of two positive integer numbers. <br />
+[[33](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L42)] Determine whether two positive integer numbers are coprime. <br />
+[[34](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L52)] Calculate Euler's totient function phi(m). <br />
+[[35](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L80)] Determine the prime factors of a given positive number. <br />
+[[36](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L102)] Construct a list containing the prime factors and their multiplicity. <br />
+[[37](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L118)] Calculate Euler's totient function phi(m) (improved). <br />
+[[38](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L136)] Compare the two methods of calculating Euler's totient function. <br />
+[[39](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L159)] A list of prime numbers. <br />
+[[40](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L181)] Goldbach's Conjecture. <br />
+[[41](https://github.com/krailis/99-Problems/blob/master/Golang/pkg/arithmetic/arithmetic.go#L200)] A list of Goldbach's Compositions. <br />
 [42] There is no problem 42 in original problem set. <br />
 [43] There is no problem 43 in original problem set. <br />
 [44] There is no problem 44 in original problem set. <br />
