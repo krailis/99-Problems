@@ -37,17 +37,17 @@ An attempt to solve the [99 PROLOG Problems](https://sites.google.com/site/prolo
 
 ## Arithmetic
 
-[[31](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L17)] Determine whether a given integer number is prime. <br />
-[[32](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L35)] Determine the greatest common divisor of two positive integer numbers. <br />
-[[33](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L64)] Determine whether two positive integer numbers are coprime. <br />
-[[34](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L124)] Calculate Euler's totient function phi(m). <br />
-[[35](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L88)] Determine the prime factors of a given positive number. <br />
-[[36](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L168)] Construct a list containing the prime factors and their multiplicity. <br />
-[[37](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L187)] Calculate Euler's totient function phi(m) (improved). <br />
-[[38](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L221)] Compare the two methods of calculating Euler's totient function. <br />
-[[39](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L243)] A list of prime numbers. <br />
-[[40](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L270)] Goldbach's Conjecture. <br />
-[[41](https://github.com/krailis/99-Problems/blob/master/Python/arithmetic/arithmetic.py#L300)] A list of Goldbach's Compositions. <br />
+[[31](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L17)] Determine whether a given integer number is prime. <br />
+[[32](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L28)] Determine the greatest common divisor of two positive integer numbers. <br />
+[[33](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L42)] Determine whether two positive integer numbers are coprime. <br />
+[[34](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L52)] Calculate Euler's totient function phi(m). <br />
+[[35](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L80)] Determine the prime factors of a given positive number. <br />
+[[36](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L102)] Construct a list containing the prime factors and their multiplicity. <br />
+[[37](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L118)] Calculate Euler's totient function phi(m) (improved). <br />
+[[38](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L136)] Compare the two methods of calculating Euler's totient function. <br />
+[[39](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L159)] A list of prime numbers. <br />
+[[40](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L181)] Goldbach's Conjecture. <br />
+[[41](https://github.com/krailis/99-Problems/blob/master/Golang/arithmetic/arithmetic.go#L200)] A list of Goldbach's Compositions. <br />
 [42] There is no problem 42 in original problem set. <br />
 [43] There is no problem 43 in original problem set. <br />
 [44] There is no problem 44 in original problem set. <br />
@@ -55,8 +55,8 @@ An attempt to solve the [99 PROLOG Problems](https://sites.google.com/site/prolo
 
 ## Logic and Codes
 
-[[46](https://github.com/krailis/99-Problems/blob/master/Python/Logic_and_Codes/solutions_45_49.py#L18)] Truth tables for logical expressions. <br />
-[[47](https://github.com/krailis/99-Problems/blob/master/Python/Logic_and_Codes/solutions_45_49.py#L26)] Truth tables for logical expressions(2). <br />
-[[48](https://github.com/krailis/99-Problems/blob/master/Python/Logic_and_Codes/solutions_45_49.py#L108)] Truth tables for logical expressions(3). <br />
-[[49](https://github.com/krailis/99-Problems/blob/master/Python/Logic_and_Codes/solutions_45_49.py#L122)] Gray code. <br />
-[[50](https://github.com/krailis/99-Problems/blob/master/Python/Logic_and_Codes/solutions_45_49.py#L138)] Huffman Code. <br />
+[46] Truth tables for logical expressions. <br />
+[47] Truth tables for logical expressions(2). <br />
+[48] Truth tables for logical expressions(3). <br />
+[49] Gray code. <br />
+[50] Huffman Code. <br />
